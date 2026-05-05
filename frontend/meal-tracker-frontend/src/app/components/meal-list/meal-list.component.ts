@@ -13,6 +13,8 @@ import { Meal } from '../../models/meal';
 export class MealListComponent implements OnInit {
   meals: Meal[] = [];
 
+  editingMealId: string | null = null;
+
   newMeal: Meal = {
     name: '',
     category: 'Breakfast',
@@ -43,20 +45,49 @@ export class MealListComponent implements OnInit {
     this.mealService.createMeal(this.newMeal).subscribe({
       next: () => {
         this.loadMeals();
-
-        this.newMeal = {
-          name: '',
-          category: 'Breakfast',
-          calories: 0,
-          date: '',
-          notes: '',
-          plannedDay: ''
-        };
+        this.resetForm();
       },
       error: (error) => {
         console.error('Error adding meal:', error);
       }
     });
+  }
+
+  startEdit(meal: Meal): void {
+    if (!meal._id) {
+      return;
+    }
+
+    this.editingMealId = meal._id;
+
+    this.newMeal = {
+      name: meal.name,
+      category: meal.category,
+      calories: meal.calories,
+      date: meal.date ? meal.date.substring(0, 10) : '',
+      notes: meal.notes || '',
+      plannedDay: meal.plannedDay || ''
+    };
+  }
+
+  updateMeal(): void {
+    if (!this.editingMealId) {
+      return;
+    }
+
+    this.mealService.updateMeal(this.editingMealId, this.newMeal).subscribe({
+      next: () => {
+        this.loadMeals();
+        this.resetForm();
+      },
+      error: (error) => {
+        console.error('Error updating meal:', error);
+      }
+    });
+  }
+
+  cancelEdit(): void {
+    this.resetForm();
   }
 
   deleteMeal(id: string | undefined): void {
@@ -72,5 +103,18 @@ export class MealListComponent implements OnInit {
         console.error('Error deleting meal:', error);
       }
     });
+  }
+
+  resetForm(): void {
+    this.editingMealId = null;
+
+    this.newMeal = {
+      name: '',
+      category: 'Breakfast',
+      calories: 0,
+      date: '',
+      notes: '',
+      plannedDay: ''
+    };
   }
 }

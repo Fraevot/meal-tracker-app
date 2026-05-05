@@ -21,6 +21,11 @@
   border-radius: 6px;
 }
 
+.form-buttons {
+  display: flex;
+  gap: 8px;
+}
+
 .meal-form button {
   width: 120px;
   padding: 8px;
@@ -35,6 +40,20 @@
   background-color: #f9f9f9;
 }
 
+.edit-btn {
+  background-color: #1565c0;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 12px;
+  cursor: pointer;
+  margin-right: 8px;
+}
+
+.edit-btn:hover {
+  background-color: #0d47a1;
+}
+
 .delete-btn {
   background-color: #c62828;
   color: white;
@@ -46,6 +65,17 @@
 
 .delete-btn:hover {
   background-color: #a91f1f;
+}
+
+.cancel-btn {
+  background-color: #777;
+  color: white;
+  border: none;
+  border-radius: 6px;
+}
+
+.cancel-btn:hover {
+  background-color: #555;
 }
 
 h2 {

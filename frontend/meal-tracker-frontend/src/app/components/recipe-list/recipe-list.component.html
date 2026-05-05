@@ -1,0 +1,22 @@
+<h2>Recipes</h2>
+
+<div *ngIf="recipes.length === 0">
+  No recipes found.
+</div>
+
+<div class="recipe-card" *ngFor="let recipe of recipes">
+  <h3>{{ recipe.title }}</h3>
+
+  <p><strong>Category:</strong> {{ recipe.category }}</p>
+  <p><strong>Calories:</strong> {{ recipe.calories }}</p>
+  <p><strong>Favorite:</strong> {{ recipe.favorite ? 'Yes' : 'No' }}</p>
+
+  <p><strong>Ingredients:</strong></p>
+  <ul>
+    <li *ngFor="let ingredient of recipe.ingredients">
+      {{ ingredient }}
+    </li>
+  </ul>
+
+  <p><strong>Instructions:</strong> {{ recipe.instructions }}</p>
+</div>
