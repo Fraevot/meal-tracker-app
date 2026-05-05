@@ -1,0 +1,14 @@
+<h2>Meals</h2>
+
+<div *ngIf="meals.length === 0">
+  No meals found.
+</div>
+
+<div class="meal-card" *ngFor="let meal of meals">
+  <h3>{{ meal.name }}</h3>
+  <p><strong>Category:</strong> {{ meal.category }}</p>
+  <p><strong>Calories:</strong> {{ meal.calories }}</p>
+  <p><strong>Date:</strong> {{ meal.date | date }}</p>
+  <p><strong>Planned Day:</strong> {{ meal.plannedDay }}</p>
+  <p><strong>Notes:</strong> {{ meal.notes }}</p>
+</div>
