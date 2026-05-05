@@ -1,0 +1,183 @@
+Here is how to set up MongoDB Atlas for the project.
+
+We are using MongoDB Atlas, which means you do not need to install MongoDB on your computer.
+
+1. Go to MongoDB Atlas
+
+Search for MongoDB Atlas or go to the MongoDB Atlas website.
+
+Create a free account or sign in.
+
+2. Create a new project
+
+Once you are signed in:
+
+* Click New Project
+* Name it something like Meal Tracker App
+* Click Create Project
+
+3. Create a free cluster
+
+Inside the project:
+
+* Click Build a Database or Create
+* Choose the free option, usually called M0 Free
+* Choose a cloud provider like AWS
+* Pick a region close to you
+* Keep the cluster name as Cluster0 or name it meal-tracker-cluster
+* Click Create Deployment or Create Cluster
+
+4. Create a database user
+
+MongoDB will ask you to create a database user.
+
+Use something simple like:
+
+```txt
+Username: mealtrackeruser
+Password: make_a_password_and_save_it
+```
+
+This is not your MongoDB login account. This is the username/password that the app uses to connect to the database.
+
+5. Allow your IP address
+
+Go to:
+
+```txt
+Network Access
+```
+
+Then click:
+
+```txt
+Add IP Address
+```
+
+Choose:
+
+```txt
+Add Current IP Address
+```
+
+For a class project, we may also use:
+
+```txt
+0.0.0.0/0
+```
+
+That allows access from anywhere. It is convenient for development, especially if multiple teammates need to connect, but the connection string still needs to stay private.
+
+6. Get the connection string
+
+Go back to your cluster.
+
+Click:
+
+```txt
+Connect
+```
+
+Choose:
+
+```txt
+Drivers
+```
+
+Select:
+
+```txt
+Node.js
+```
+
+Copy the connection string. It will look something like this:
+
+```txt
+mongodb+srv://mealtrackeruser:<password>@cluster0.xxxxx.mongodb.net/?retryWrites=true&w=majority
+```
+
+7. Edit the connection string
+
+Replace `<password>` with the database user password you made.
+
+Also add the database name after `.net/`.
+
+Use:
+
+```txt
+meal_tracker
+```
+
+So it should look like this:
+
+```txt
+mongodb+srv://mealtrackeruser:YOUR_PASSWORD@cluster0.xxxxx.mongodb.net/meal_tracker?retryWrites=true&w=majority
+```
+
+8. Add it to the backend `.env` file
+
+Inside the project, go to:
+
+```txt
+backend/.env
+```
+
+It should look like this:
+
+```env
+PORT=3000
+MONGO_URI=mongodb+srv://mealtrackeruser:YOUR_PASSWORD@cluster0.xxxxx.mongodb.net/meal_tracker?retryWrites=true&w=majority
+```
+
+Important formatting:
+
+* No quotes around the connection string
+* No spaces around the equals sign
+* Do not commit the `.env` file to GitHub
+
+Correct:
+
+```env
+MONGO_URI=mongodb+srv://mealtrackeruser:YOUR_PASSWORD@cluster0.xxxxx.mongodb.net/meal_tracker?retryWrites=true&w=majority
+```
+
+Wrong:
+
+```env
+MONGO_URI = "mongodb+srv://mealtrackeruser:YOUR_PASSWORD@cluster0.xxxxx.mongodb.net/meal_tracker"
+```
+
+9. Start the backend
+
+In the backend folder, run:
+
+```bash
+npm install
+npm run dev
+```
+
+If it works, you should see:
+
+```txt
+Server listening on Port 3000
+MongoDB Connected: ...
+```
+
+10. Add test data
+
+To add test meals and recipes, run this inside the backend folder:
+
+```bash
+npm run seed
+```
+
+You should see:
+
+```txt
+Seed data added successfully
+```
+
+Then the app should be able to show meals and recipes from MongoDB.
+
+Important reminder:
+Do not push your `.env` file to GitHub because it contains the MongoDB password. Each person should have their own `.env` file locally.

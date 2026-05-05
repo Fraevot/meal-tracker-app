@@ -1,0 +1,141 @@
+I finished setting up the backend database part on my branch.
+
+What is included:
+
+* MongoDB Atlas connection setup
+* Mongoose setup
+* 2 schema models: Meal and Recipe
+* Seed data for testing
+* Full CRUD routes for meals
+* Full CRUD routes for recipes
+
+To use it on your computer:
+
+1. Pull the latest code from GitHub.
+
+2. Go into the backend folder:
+
+```bash
+cd backend
+```
+
+3. Install the backend packages:
+
+```bash
+npm install
+```
+
+4. Create your own `.env` file inside the backend folder.
+
+You can copy `.env.example` and rename the copy to `.env`.
+
+On Windows PowerShell:
+
+```powershell
+copy .env.example .env
+```
+
+On Mac:
+
+```bash
+cp .env.example .env
+```
+
+5. Add the MongoDB connection string to the `.env` file.
+
+The `.env` file should look like this:
+
+```env
+PORT=3000
+MONGO_URI=paste_the_mongodb_connection_string_here
+```
+
+MongoDB setup:
+
+We are using MongoDB Atlas, so you do not need to install MongoDB locally.
+
+You need the MongoDB connection string from whoever owns the MongoDB Atlas cluster. It should look something like this:
+
+```txt
+mongodb+srv://username:password@cluster-name.mongodb.net/meal_tracker?retryWrites=true&w=majority
+```
+
+Paste that full string after `MONGO_URI=` in your `.env` file.
+
+Important:
+
+* Do not put quotes around the connection string.
+* Do not add spaces around the equals sign.
+* Do not commit the `.env` file because it contains the database password.
+
+Correct:
+
+```env
+MONGO_URI=mongodb+srv://username:password@cluster-name.mongodb.net/meal_tracker?retryWrites=true&w=majority
+```
+
+Wrong:
+
+```env
+MONGO_URI = "mongodb+srv://username:password@cluster-name.mongodb.net/meal_tracker"
+```
+
+6. Make sure your IP address is allowed in MongoDB Atlas.
+
+If the backend does not connect, the Atlas cluster may be blocking your IP address.
+
+To fix that:
+
+* Go to MongoDB Atlas
+* Open the project
+* Go to Network Access
+* Click Add IP Address
+* Choose Add Current IP Address
+* Save it
+
+For development, we may also allow:
+
+```txt
+0.0.0.0/0
+```
+
+That lets anyone with the connection string connect. It is easier for a class project, but the connection string still needs to stay private.
+
+7. Start the backend:
+
+```bash
+npm run dev
+```
+
+If it works, you should see:
+
+```txt
+Server listening on Port 3000
+MongoDB Connected: ...
+```
+
+8. To add test data to MongoDB, run:
+
+```bash
+npm run seed
+```
+
+The working API routes are:
+
+```txt
+GET     http://localhost:3000/api/meals
+POST    http://localhost:3000/api/meals
+GET     http://localhost:3000/api/meals/:id
+PUT     http://localhost:3000/api/meals/:id
+DELETE  http://localhost:3000/api/meals/:id
+```
+
+```txt
+GET     http://localhost:3000/api/recipes
+POST    http://localhost:3000/api/recipes
+GET     http://localhost:3000/api/recipes/:id
+PUT     http://localhost:3000/api/recipes/:id
+DELETE  http://localhost:3000/api/recipes/:id
+```
+
+The frontend can connect to these routes later using Angular services and HttpClient.

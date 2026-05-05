@@ -1,0 +1,124 @@
+I added the Angular frontend setup and connected it to the backend API.
+
+What is included:
+
+* Angular frontend project
+* Meal interface
+* Recipe interface
+* MealService using HttpClient and Observables
+* RecipeService using HttpClient and Observables
+* Meal list connected to MongoDB through the backend
+* Add/Edit/Delete meals from the frontend
+* Recipe list connected to MongoDB through the backend
+
+To run the frontend on your computer:
+
+1. Pull the latest code from GitHub.
+
+2. Make sure the backend is running first.
+
+Go into the backend folder:
+
+```bash
+cd backend
+```
+
+Install packages if you have not already:
+
+```bash
+npm install
+```
+
+Make sure your `backend/.env` file exists and has the MongoDB connection string:
+
+```env
+PORT=3000
+MONGO_URI=paste_the_mongodb_connection_string_here
+```
+
+Then start the backend:
+
+```bash
+npm run dev
+```
+
+You should see:
+
+```txt
+Server listening on Port 3000
+MongoDB Connected: ...
+```
+
+3. Open a second terminal and go into the Angular frontend folder:
+
+```bash
+cd frontend/meal-tracker-frontend
+```
+
+4. Install the frontend packages:
+
+```bash
+npm install
+```
+
+5. Start the Angular frontend:
+
+```bash
+ng serve
+```
+
+If `ng serve` does not work, try:
+
+```bash
+npx ng serve
+```
+
+6. Open the frontend in your browser:
+
+```txt
+http://localhost:4200
+```
+
+The frontend talks to the backend at:
+
+```txt
+http://localhost:3000
+```
+
+So both servers need to be running at the same time:
+
+```txt
+Backend:  http://localhost:3000
+Frontend: http://localhost:4200
+```
+
+Current frontend features:
+
+* View meals from MongoDB
+* Add a meal
+* Edit a meal
+* Delete a meal
+* View recipes from MongoDB
+
+Important:
+
+* Do not commit `node_modules`
+* Do not commit `backend/.env`
+* If meals or recipes do not show up, make sure the backend is running and MongoDB is connected
+* If there is no test data, run this inside the backend folder:
+
+```bash
+npm run seed
+```
+
+Useful API routes the frontend is using:
+
+```txt
+GET     http://localhost:3000/api/meals
+POST    http://localhost:3000/api/meals
+PUT     http://localhost:3000/api/meals/:id
+DELETE  http://localhost:3000/api/meals/:id
+GET     http://localhost:3000/api/recipes
+```
+
+The frontend uses Angular services with HttpClient to call these backend routes.
