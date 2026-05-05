@@ -1,3 +1,55 @@
+<h2>Add Meal</h2>
+
+<form class="meal-form" (ngSubmit)="addMeal()">
+  <label>
+    Meal Name:
+    <input type="text" name="name" [(ngModel)]="newMeal.name" required>
+  </label>
+
+  <label>
+    Category:
+    <select name="category" [(ngModel)]="newMeal.category" required>
+      <option value="Breakfast">Breakfast</option>
+      <option value="Lunch">Lunch</option>
+      <option value="Dinner">Dinner</option>
+      <option value="Snack">Snack</option>
+    </select>
+  </label>
+
+  <label>
+    Calories:
+    <input type="number" name="calories" [(ngModel)]="newMeal.calories" required>
+  </label>
+
+  <label>
+    Date:
+    <input type="date" name="date" [(ngModel)]="newMeal.date" required>
+  </label>
+
+  <label>
+    Planned Day:
+    <select name="plannedDay" [(ngModel)]="newMeal.plannedDay">
+      <option value="">None</option>
+      <option value="Monday">Monday</option>
+      <option value="Tuesday">Tuesday</option>
+      <option value="Wednesday">Wednesday</option>
+      <option value="Thursday">Thursday</option>
+      <option value="Friday">Friday</option>
+      <option value="Saturday">Saturday</option>
+      <option value="Sunday">Sunday</option>
+    </select>
+  </label>
+
+  <label>
+    Notes:
+    <textarea name="notes" [(ngModel)]="newMeal.notes"></textarea>
+  </label>
+
+  <button type="submit">Add Meal</button>
+</form>
+
+<hr>
+
 <h2>Meals</h2>
 
 <div *ngIf="meals.length === 0">
@@ -11,4 +63,8 @@
   <p><strong>Date:</strong> {{ meal.date | date }}</p>
   <p><strong>Planned Day:</strong> {{ meal.plannedDay }}</p>
   <p><strong>Notes:</strong> {{ meal.notes }}</p>
+
+  <button class="delete-btn" type="button" (click)="deleteMeal(meal._id)">
+    Delete
+  </button>
 </div>

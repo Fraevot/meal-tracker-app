@@ -1,9 +1,51 @@
+.meal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 450px;
+  margin-bottom: 24px;
+}
+
+.meal-form label {
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+}
+
+.meal-form input,
+.meal-form select,
+.meal-form textarea {
+  padding: 8px;
+  margin-top: 4px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.meal-form button {
+  width: 120px;
+  padding: 8px;
+  cursor: pointer;
+}
+
 .meal-card {
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 12px;
   margin-bottom: 12px;
   background-color: #f9f9f9;
+}
+
+.delete-btn {
+  background-color: #c62828;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.delete-btn:hover {
+  background-color: #a91f1f;
 }
 
 h2 {
