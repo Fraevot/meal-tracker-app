@@ -1,5 +1,6 @@
 <h2>{{ editingMealId ? 'Edit Meal' : 'Add Meal' }}</h2>
 
+
 <form class="meal-form" (ngSubmit)="editingMealId ? updateMeal() : addMeal()">
   <label>
     Meal Name:
@@ -68,20 +69,21 @@
 <div *ngIf="meals.length === 0">
   No meals found.
 </div>
+<div class="meals-container">
+  <div class="meal-card" *ngFor="let meal of meals">
+    <h3>{{ meal.name }}</h3>
+    <p><strong>Category:</strong> {{ meal.category }}</p>
+    <p><strong>Calories:</strong> {{ meal.calories }}</p>
+    <p><strong>Date:</strong> {{ meal.date | date }}</p>
+    <p><strong>Planned Day:</strong> {{ meal.plannedDay }}</p>
+    <p><strong>Notes:</strong> {{ meal.notes }}</p>
 
-<div class="meal-card" *ngFor="let meal of meals">
-  <h3>{{ meal.name }}</h3>
-  <p><strong>Category:</strong> {{ meal.category }}</p>
-  <p><strong>Calories:</strong> {{ meal.calories }}</p>
-  <p><strong>Date:</strong> {{ meal.date | date }}</p>
-  <p><strong>Planned Day:</strong> {{ meal.plannedDay }}</p>
-  <p><strong>Notes:</strong> {{ meal.notes }}</p>
+    <button class="edit-btn" type="button" (click)="startEdit(meal)">
+      Edit
+    </button>
 
-  <button class="edit-btn" type="button" (click)="startEdit(meal)">
-    Edit
-  </button>
-
-  <button class="delete-btn" type="button" (click)="deleteMeal(meal._id)">
-    Delete
-  </button>
+    <button class="delete-btn" type="button" (click)="deleteMeal(meal._id)">
+      Delete
+    </button>
+  </div>
 </div>
